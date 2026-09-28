@@ -6,18 +6,18 @@ A Playwright-based scraper for **UP Bhulekh** ([upbhulekh.gov.in](https://upbhul
 ![Playwright](https://img.shields.io/badge/Playwright-1.63-2EAD33.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)
 
-## ✨ Features
+## Features
 
-- 🔓 **Readable API traffic without breaking crypto.** The site AES-encrypts every request and response (`{"edata": …}`). `hooks.js` wraps `JSON.parse`/`JSON.stringify` inside the page, so plaintext is logged before encryption and after decryption.
-- 🧭 **Scriptable long-running browser.** You solve the captcha once. After that, drop Python snippets into a command folder and `driver.py` runs them against the live page.
-- 🔎 **Khasra sweep.** `scrape_khasra.py` tries gata numbers 1…N on the no-captcha `#/khatauni_rtk` page and opens every new khata. It resumes from `progress.json` and stops after 150 empty numbers in a row.
-- 🪪 **Spelling-tolerant owner matching.** `names.py` folds common Devanagari variants (ी/ि, ष/श/स, व/ब, ं/न …) and drops honorifics (श्री, स्व०, देवी, सिंह). It checks current owners, shared-khata (अंश) owners, and owners added or removed by mutation.
-- 📄 **PDF capture.** It uses the site's own "Download PDF" button. Where that crashes the browser, `page_to_pdf` screenshots the page and writes an image PDF.
-- 📊 **Reports.** `report.py` builds a CSV/XLSX summary of all matches, and `md_to_pdf.py` renders a Hindi/English Markdown report to a styled A4 PDF.
-- 🐳 **Docker ready.** A headed Chromium runs on a virtual display, reachable in your browser through noVNC.
-- 🔒 **Personal data stays out of git.** Everything specific to you (names, village, scraped records, browser profile) lives in the gitignored `private/` folder.
+- **Readable API traffic without breaking crypto.** The site AES-encrypts every request and response (`{"edata": …}`). `hooks.js` wraps `JSON.parse`/`JSON.stringify` inside the page, so plaintext is logged before encryption and after decryption.
+- **Scriptable long-running browser.** You solve the captcha once. After that, drop Python snippets into a command folder and `driver.py` runs them against the live page.
+- **Khasra sweep.** `scrape_khasra.py` tries gata numbers 1…N on the no-captcha `#/khatauni_rtk` page and opens every new khata. It resumes from `progress.json` and stops after 150 empty numbers in a row.
+- **Spelling-tolerant owner matching.** `names.py` folds common Devanagari variants (ी/ि, ष/श/स, व/ब, ं/न …) and drops honorifics (श्री, स्व०, देवी, सिंह). It checks current owners, shared-khata (अंश) owners, and owners added or removed by mutation.
+- **PDF capture.** It uses the site's own "Download PDF" button. Where that crashes the browser, `page_to_pdf` screenshots the page and writes an image PDF.
+- **Reports.** `report.py` builds a CSV/XLSX summary of all matches, and `md_to_pdf.py` renders a Hindi/English Markdown report to a styled A4 PDF.
+- **Docker ready.** A headed Chromium runs on a virtual display, reachable in your browser through noVNC.
+- **Personal data stays out of git.** Everything specific to you (names, village, scraped records, browser profile) lives in the gitignored `private/` folder.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 upbhulekh-scraper/
@@ -37,7 +37,7 @@ upbhulekh-scraper/
 └── private/               # (gitignored) config.json, out/, browser profiles, asset cache
 ```
 
-## 🚀 Quick Start (Docker)
+## Quick Start (Docker)
 
 ```bash
 git clone https://github.com/sumit-kumar-03/upbhulekh-scraper.git
@@ -70,7 +70,7 @@ EOF
 
 `./run_cmd.sh` works from the host because `private/` is mounted into the container.
 
-## 💻 Quick Start (local)
+## Quick Start (local)
 
 ```bash
 python3 -m venv .venv
@@ -83,7 +83,7 @@ mkdir -p private && cp config.example.json private/config.json
 
 Then queue commands with `./run_cmd.sh` as above.
 
-## ⚙️ Configuration
+## Configuration
 
 `private/config.json`:
 
@@ -105,7 +105,7 @@ Then queue commands with `./run_cmd.sh` as above.
 | `HEADLESS` | `0` | `1` runs the driver without a window. The captcha needs a window, so leave it at `0` |
 | `CHROMIUM_PATH` | *(bundled)* | Use a system Chromium for `discover.py` |
 
-## 🗂️ Output (`private/out/`)
+## Output (`private/out/`)
 
 | Path | Contents |
 |---|---|
@@ -116,7 +116,7 @@ Then queue commands with `./run_cmd.sh` as above.
 | `traffic.jsonl` | Every decrypted request/response seen by `hooks.js` |
 | `summary.csv`, `summary.xlsx` | Output of `report.py` |
 
-## 🔌 Site API notes
+## Site API notes
 
 Every call is `POST /PublicBhuApi/api/<endpoint>` with an encrypted `{"edata"}` body. With `hooks.js` in place you see the plaintext:
 
@@ -133,7 +133,7 @@ Known quirks:
 - The 7 MB `main.js` is sometimes throttled so hard the app never boots. The driver serves hashed JS/CSS from `private/asset_cache/` once it has seen them.
 - The khasra keypad input is read-only. Numbers are typed by clicking `table.keyboard1 a[data-value=N]`.
 
-## ⚖️ Responsible use
+## Responsible use
 
 The records shown on UP Bhulekh are public, but they name real people. This tool:
 - sends requests one at a time with 1–2 s pauses;
