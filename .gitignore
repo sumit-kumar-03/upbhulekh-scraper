@@ -1,0 +1,19 @@
+# Personal data: scraped records, PDFs, reports, browser profiles, config with real names
+private/
+
+# Safety nets in case data is written outside private/
+out/
+profile*/
+asset_cache/
+*.pdf
+*.jsonl
+*.xlsx
+*.csv
+*.log
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

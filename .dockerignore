@@ -1,0 +1,10 @@
+private/
+out/
+profile*/
+asset_cache/
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+.git/
+.gitignore

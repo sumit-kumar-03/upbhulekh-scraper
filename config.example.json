@@ -1,0 +1,9 @@
+{
+  "district": "Lucknow",
+  "tehsil": "Lucknow",
+  "village": "Example Village",
+  "targets": [
+    ["राम कुमार", "श्याम लाल"],
+    ["सीता देवी", "राम कुमार"]
+  ]
+}
