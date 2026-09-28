@@ -1,0 +1,5 @@
+playwright==1.63.0
+Markdown==3.11
+pypdf==6.19.0
+openpyxl==3.1.5
+pillow==12.3.0

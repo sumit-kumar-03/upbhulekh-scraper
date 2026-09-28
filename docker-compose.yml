@@ -1,0 +1,14 @@
+services:
+  scraper:
+    image: upbhulekh-scraper:latest
+    build: .
+    container_name: upbhulekh-scraper
+    # Scraped data, browser profile and config.json stay on the host (gitignored).
+    volumes:
+      - ./private:/usr/src/app/private
+    ports:
+      - "127.0.0.1:6080:6080"
+    shm_size: 1gb
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
